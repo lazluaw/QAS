@@ -1,0 +1,48 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qas.web.mappers.BoardMapper">
+    <insert id="insertBoard"
+            parameterType="com.qas.web.domains.Board">
+        insert into board (
+        postIdx as post_idx,
+        postTitle as post_title,
+        postContent as post_content,
+        imgFile as img_file,
+        insertDate as insert_date,
+        updateDate as update_date,
+        tagContent as tag_content,
+        postLike as post_like,
+        postLikeCount as post_like_count,
+        commentCount as comment_count
+        )
+        values(
+        #{post_idx},
+        #{post_title},
+        #{post_content},
+        #{img_file},
+        #{insert_date},
+        #{update_date},
+        #{tag_content},
+        #{post_like},
+        #{post_like_count},
+        #{comment_count},
+        )
+        )
+    </insert>
+
+    <update id="updateBoard"
+            parameterType="com.qas.web.domains.Board">
+        update board set
+        updateDate as update_date = #{update_date}
+        where post_idx like {postIdx}
+    </update>
+
+    <delete id="deleteBoard"
+            parameterType="com.qas.web.domains.Board">
+        delete from board
+        where post_idx like {postIdx}
+    </delete>
+
+</mapper>

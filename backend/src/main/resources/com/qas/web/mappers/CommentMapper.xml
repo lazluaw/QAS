@@ -1,0 +1,40 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qas.web.mappers.CommentMapper">
+    <insert id="insertComment"
+            parameterType="com.qas.web.domains.Comment">
+        insert into comment (
+        commentIdx as comment_idx,
+        commentContent as comment_content,
+        commentLike as comment_like,
+        commentLikeCount as comment_like_count,
+        insertDate as insert_date,
+        updateDate as update_date,
+        userId as user_id
+        )
+        values (
+        #{comment_idx},
+        #{comment_content},
+        #{comment_like},
+        #{comment_like_count},
+        #{insert_date},
+        #{update_date},
+        #{user_id},
+        )
+    </insert>
+
+    <update id="updateComment"
+            parameterType="com.qas.web.domains.Comment">
+        update comment set
+        updateDate as update_date = #{update_date}
+        where comment_idx like #{commentIdx}
+    </update>
+
+    <delete id="deleteComment"
+            parameterType="com.qas.web.domains.Comment">
+        delete from comment
+        where comment_idx like #{commentIdx}
+    </delete>
+</mapper>
